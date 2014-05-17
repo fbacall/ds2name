@@ -37,6 +37,8 @@
         var badWords = Array(encodedWords.length);
         for(var i = 0; i < encodedWords.length; i++)
             badWords[i] = caesar(encodedWords[i], -key);
+            
+        var asterisks = new Array(encodedWords[0].length + 1).join('*');
 
         $(document).ready(function () {
             $('#submit').click(function () {
@@ -54,7 +56,7 @@
             var matches = [];
 
             for(var i = 0; i < badWords.length; i++) {        
-                var newName = name.replace(new RegExp(badWords[i], 'gi'), new Array(badWords[i].length + 1).join('*'));
+                var newName = name.replace(new RegExp(badWords[i], 'gi'), asterisks.substring(0, badWords[i].length));
                 if(newName != name) {
                     matches.push(badWords[i]);
                 }
