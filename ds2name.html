@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="description" content="A simple, online tool to check whether or not your name will be censored in Dark Souls 2">
+    <meta name="keywords" content="Dark Souls,Dark Souls 2,Name,Censorship,Checker">
+    <meta name="author" content="Finn Bacall">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dark Souls 2 Name Checker</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+        /*
+        Copyright (c) 2014, Finn Bacall
+        All rights reserved.
+
+        Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+        1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+        2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        */
+    
+        var key = 1;
+        var encodedWords = ["gvdljohtijunpuifsgvdlfs","dmfbwfmboetuffnfs","dmfwfmboetufbnfs","dmfwfmboetuffnfs","dijdltgpsdijdlt","dpdlgvdlmvubufe","dbsqfu!nvodifs","dijdltpodijdlt","dijdltupdijdlt","bohszqfohvjot","cspuifsgvdlfs","dijdlgpsdijdl","dijdlt3dijdlt","dijdlt5dijdlt","dmjupsjt!!!!!","hjsmtgpshjsmt","ipnptfyvbmjuz","nbtufscbujpot","npuifsgvdlfst","npuifsgvdljoh","oznqipnbojbdt","svtuzuspncpof","tbepnbtpdijtn","tqfbsdivdlfst","uffotgpsuffot","usbotwftujuft","xpnbogpsxpnbo","xpnfogpsxpnfo","bohszesbhpot","bohszqfohvjo","bohszqjsbuft","dijdlpodijdl","dijdlupdijdl","epolfzsjccfs","epvdifxbggmf","gvehfqbdljoh","hjsmtpohjsmt","hjsmtuphjsmt","lppmjfmjdlfs","mftcjgsjfoet","nbtufscbujoh","nbtufscbujpo","nbtuvscbujoh","nbtuvscbujpo","npuifsgvdlbt","npuifsgvdlfe","npuifsgvdlfs","npuifsgvdllb","ofdspqijmjbd","oznqipnbojbd","tdbupmphjdbm","tpoopgbcjudi","tpoopwbcjudi","tpoovwbcjudi","tqfbsdivdlfs","uffotpouffot","uffotupuffot","ujuujfgvdlfs","usbotwftujuf","xpnbopoxpnbo","xpnboupxpnbo","xpnfopoxpnfo","xpnfoupxpnfo","bohszesbhpo","bohszqjsbuf","cfbtujbmjuz","cjtfyvbmjuz","cmppez!ifmm","cpztgpscpzt","dijdl3dijdl","dijdl5dijdl","djsdmfkfslt","dmvtufsgvdl","dpdlnvodifs","dvoojmjohvt","dvoujmjohjt","dvoujmjohvt","dvouvmjohjt","dvouvmjohvt","ejdltvdlfst","ejdltvdljoh","ejohmfcfssz","fkbdvmbujpo","gboozgvdlfs","gpsojdbujoh","gpsojdbujpo","gvehfqbdlfs","hbohcbohfst","hbohcbohjoh","hjsmgpshjsm","hjsmt3hjsmt","hjsmt5hjsmt","hvztgpshvzt","ipnptfyvbmt","j!mpwf!ujut","kvohmfcvooz","nbtufscbuft","nbtuvscbuft","nfbudvsubjo","npuifsgvdlb","ofdspqijmft","ofdspqijmjb","ovuozbnpvui","ovuozpnpvui","oznqipnbojb","qfojtgvdlfs","qpsdinpolfz","sjdpdlvmpvt","tboe!ojhhfs","tboeojhhfst","tfyzcjudift","tjyuzojojoh","tpopgbcjudi","tqfsnjdjebm","tvcnjttjwft","ublf!b!evnq","uffogpsuffo","uffot3uffot","uffot5uffot","uivoefsdvou","usbotfyvbmt","xpnbo3xpnbo","xpnbo5xpnbo","xpnfo3xpnfo","xpnfo5xpnfo"," jqqfsifbet","3hjsmt2dvq","btt!ljttfs","btt!mjdlfs","btt!nbtufs","btt!qjsbuf","btt!sbqbhf","btt!up!btt","cfbo!dpvou","cj!tfyvbmt","cpztpocpzt","cvncmfgvdl","cvuugvdlfs","d1dltvdlfs","dbnfm!upft","dbtusbujpo","difftfejdl","djsdmfkfsl","dpdl!cmpdl","dpdlgvdlfs","dpdlnbtufs","dpdltvdlfs","dplnvodifs","dpqvmbujoh","dpqvmbujpo","effquispbu","efgfdbujoh","efgfdbujpo","ejdltvdlfs","ephhztuzmf","epnjobujpo","epnjobusjy","epvdifcbht","epvdifkpct","fkbdvmbufe","fkbdvmbuft","gboozgmbqt","gpsojdbuft","gvdlovhhfu","hbohcbohfs","hjsmpohjsm","hjsmuphjsm","hpcuiflopc","hvztpohvzt","hvztuphvzt","ibjsz!cvti","ipnptfyvbm","j!mjlf!btt","j!mpwf!btt","j!mpwf!uju","jmvwtobudi","kbdljohpgg","kftvtgsfbl","lvlmvylmbo","mfnpoqbsuz","mjdifsdvou","mjdl!nzbtt","mjdlcfbwfs","mjdldbsqfu","mjdlifsbtt","mjdlifsqjf","mjdlnz!btt","mpwf!kvjdf","n56ufscbuf","nb6ufscbuf","nbtufscbu4","nbtufscbuf","nbtuvscbuf","npuifsgvdl","nvgg!ejwfs","nvggejwjoh","ofdspqijmf","qbfepqijmf","qfdlfsifbe","qfepqijmft","qfepqijmjb","qfswfstjpo","qppo!fbufs","svnqsbohfs","tboeojhhbt","tboeojhhfs","tdimpohjoh","tdiuvqqjoh","tdsfx!uijt","tfynbdijof","tmpqfifbet","tpepnj joh","tqfsnkvjdf","tvcnjttjwf","ufbcbhhjoh","uffopouffo","uffoupuffo","ujutboebtt","uptt!tbmbe","usbotfyvbm","wbggbodvmp","wbhjubsjbo","xbe!cmpxfs","xbe!tvdlfs","xibdlfepgg","xipsfipvtf"," jqqfsifbe","btt!3!btt","btt!mpwfs","btt!sbqfs","bttcboeju","bttcbohfs","bttcfshfs","bttcvshfs","bttgvdlfs","bttgvllfs","bttipqqfs","bttkbdlfs","bttmjdlfs","cj!tfyvbm","cjhnvggqj","cjtfyvbmt","cpzgpscpz","cpzt3cpzt","cpzt5cpzt","cvuugvdlb","cvuunvodi","cvuutfdlt","cvuutfllt","dbnfm!upf","dbtusbuft","dmfwfmboe","dpdl!tvdl","dpdlcmpdl","dpdlnvodi","dpdlqfojt","dpdltvllb","dpnftubjo","dpqvmbufe","dpqvmbuft","dpso`ipmf","dpsoipmft","efgfdbuft","ejdltvdlt","epvdifcbh","epvdifkpc","evnc!gvdl","fkbdvmbuf","fkblvmbuf","fspujdjtn","gfmudijoh","gjohfsjoh","gpsojdbuf","gvdlgbdft","gvdlipvtf","hboh!cboh","hbohcboht","hfojubmjb","hfscjmjoh","hjsm3hjsm","hjsm5hjsm","hmpszipmf","hpeebnnju","hpeebnofe","hpeebnoju","hvzgpshvz","hvzt3hvzt","hvzt5hvzt","ipstftiju","iptfcfbtu","jq!gsffmz","lopckpdlz","lopckplfz","mjdlqvttz","nbnnbsjft","nbogpsnbo","nbsjkvbob","nbtpdijtn","nbtpdijtu","nfogpsnfo","nvggejwfs","opckpdlfz","ovu!mpwfs","ovutubjot","pshjbtujd","qfepqijmf","qffqtipxt","qfswfsufe","qjhgvdlfs","qjttgmbqt","qppo!uboh","qppokbcjf","qppqdivuf","qsptujupu","rvffscbju","rvjn!ovut","svnqsjefs","tboeojhhb","tdsfx!zpv","tfyljuufo","tfyvbmjuz","tfyzcjudi","tijugbdfe","tijuujftu","tjyuzojof","tmbou!fzf","tmboufzft","tmpqfifbe","tmvuqvqqz","tmvuxipsf","tpepnjtut","tpepnj fe","tqijodufs","tubolqvtt","tvdlt!btt","ublfbevnq","ufbcbhhjo","uffo3uffo","uffo5uffo","uftujdbmt","uftujdmft","uisfftpnf","ujuboebtt","ujuuzgvdl","ujuuzxbol","voefsxfbs","vsjobujoh","vsjobujpo","wjshjojuz","wpzfvsjtn","xbdlfepgg","xbe!mpwfs","xbecmpxfs","xbetvdlfs","xfuesfbnt","zpvbsfhbz","bcpsujpo","bobm!tfy","bstfipmf","btt!ipmf","btt!sbqf","btt!xjqf","bttdmpxo","bttnvodi","bttxipmf","bvou!gmp","cbmmtbdl","cfbtujbm","cfbu!pgg","cffzpudi","cjtfyvbm","cjudijoh","cmbdljft","cmpx!kpc","cmpx!xbe","cpjoljoh","cpzpocpz","cpzupcpz","cspuifmt","cvhhfsfe","cvmmtiju","cvohipmf","cvu!qmvh","cvutfdlt","cvutfllt","cvuugvdl","cvuuipmf","cvuunvdi","cvuuqmvh","cvuutflt","cvuuxffe","dbnfmupf","dboobcjt","dbtusbuf","dmjupsjt","dpdlgbdf","dpdlifbe","dpdlsjoh","dpdltvdl","dpdltvlb","dpltvdlb","dpsoipmf","dsbqqjoh","dsfbnqjf","dspudift","dvntubjo","dvouipmf","efgfdbuf","ejbssifb","ejdlifbe","ejdlipmf","ejdlsjoh","ejdlxffe","ejmmjhbg","evncgvdl","evnctiju","fkbdvmbu","fkblvmbu","fsfdujpo","fsfltivo","gfmdijoh","gfmmbujp","gfmudife","gfmudifs","gfmudift","gfujtift","gmphhjoh","gpsftljo","gsjhhjoh","gspuubhf","gvdlfevq","gvdlgbdf","gvdlifbe","gvdlipmf","gvdlubse","gvdlxiju","gvdoepsl","hbohcboh","hfojubmt","hpctijuf","hvzpohvz","hvzuphvz","ibjs!qjf","ibjsqjft","kbdl!pgg","kfsl!pgg","kjhhbcpp","lopdlfst","mbqebodf","mftcjbot","mjdl!btt","mjdl!uju","mjdlejdl","mjlf!btt","mjlf!uju","mjnqejdl","mjohfsjf","mpwf!btt","mpwf!uju","mpwfipmf","nb6ufsc9","nboejohp","nboponbo","nboupnbo","nbtufsc9","nfoponfo","nfoupnfo","njtusftt","ojdf!btt","opckpdlz","opckplfz","ovncovut","ovu!mjdl","ovu!tbdl","ovu!tvdl","pshbtnjd","qbuppujf","qffqtipx","qfswfsut","qivdlfst","qivdljoh","qjttgbsu","qppobooz","qppokbcz","qppouboh","rvffgjoh","tdifjttf","tdimpoht","tdsfx!nf","tdsfxjoh","tdsfxzpv","tfyrvffo","tibhhjoh","tijuejdl","tijugbdf","tijugvdl","tijuifbe","tijumjtu","tijuujoh","tij ojut","tipubdpo","tipublpo","tlsfxjoh","tmbuufso","tobudift","tpepnjtu","tpepnj f","tqboljoh","tubol!ip","tvdl!btt","txjohfst","ubs!cbcz","uftujdbm","uftujdmf","uxbuifbe","uxbumjqt","vngsjfoe","vq!zpvst","vsjobufe","vsjobuft","wbkbzkbz","wjcsbups","xbempwfs","xfucbdlt","xfuesfbn","xibdlpgg","xijqqjoh","bobmtfy","bqftiju","btlipmf","btt!nbo","bttdpdl","bttgbdf","bttgvdl","bttifbe","bttipmf","bttxjqf","cbmmcbh","cbtubse","cbtufse","cbtujdi","cfbu!ju","cfbwfst","cfzpudi","cjudife","cjudift","cjudijo","cj budi","cmbdljf","cmpxkpc","cpggjoh","cpjpmbt","cpmmjdl","cpmmpdl","cpoebhf","cppcjft","cpz3cpz","cpz5cpz","cspuifm","cvhhfs!","cvhhfsz","cvngvdl","cvtiqjh","cvuqmvh","cvutflt","cvuutfy","dbobcjt","dpoepnt","dppdijf","dvnnjoh","dvntipu","dvnubsu","dvoucbh","ebcjudi","ebsljft","ejbsifb","ejdlxbe","ejdlxpe","ejmepft","ejqtiju","ephtiju","epvdift","evncbtt","evncgvd","evnegvl","evngvdl","evntiju","gbdljoh","gbhhjuu","gbhhput","gbhubse","gbsujoh","gdvljoh","gfmdife","gfmdifs","gfmdift","gfmmbuf","gjtujoh","gvdlbtt","gvdlfst","gvdljoh","gvdlxbe","gvdlxju","gvdlzpv","gvlxiju","hbzubse","hfojubm","hpctiju","hpeebno","hvz3hvz","hvz5hvz","ibjsqjf","iboekpc","ibse!po","ibsepot","ipoljft","ippdijf","ipplfst","ipudbsm","ipulbsm","ivnqjoh","kbdlbtt","kbdlpgg","kfslpgg","kjhbcpp","lppmjft","mftcjbo","mpmubse","mvdjgfs","mvnqljo","nbo3nbo","nbo5nbo","nbohjob","nfo3nfo","nfo5nfo","ofpob j","ojhhfst","ojhhmfu","ojqqjft","opcifbe","ovu!cbh","ovutbdl","oznqipt","pshbtnt","qboppdi","qboujft","qfdlfst","qfojtft","qfswfsu","qivdlfs","qivlfst","qivljoh","qivrfst","qivrjoh","qjttbou","qjttjoh","qppoboj","qppoboz","qppokbc","qpsljoh","qvobooj","qvobooz","qvouboh","qvttjft","rr!npsf","rvffgfe","rvffsnp","sbdjtut","sfeujef","sjn!kpc","sjnkpct","sjnnjoh","svccfst","tbqqijd","tbqqipt","tdifjtt","tdimpoh","tdiuvqq","tdiuvqt","tdsfxfe","tdsfxfs","tdspuvn","tfyljoh","tibhhfs","tibhhjo","tifnbmf","tijuufe","tijuufs","tjdlbtt","tlfufmm","tmvucbh","tqbolfe","tufbnfs","tujggjf","txjohfs","u2uu2f6","u2uujft","ubscbcz","ujucbcf","ujucbmm","ujugvdl","ujuujf6","ujuujft","ujuxbol","uvchjsm","uxvoufs","vqzpvst","vqzpvs ","vsjobuf","wbhjobm","wbhjobt","wbhjofs","wjshjot","wpzfvst","xbdlpgg","xfucbdl","xijhhfs","xijqqfe","xipsjoh","xjmmjft","zpvshbz","3hjsmt","bsubse","bttcbh","bttibu","c111ct","cbnqpu","cfbofs","cfbwfs","cjbudi","cjpudi","cpjolt","cpofst","cvdfub","cvhhfs","cvlblf","cvutfy","dbcspo","dijolt","dipbet","dpoepn","dppufs","dspudi","ebnnju","ebnofe","ebsljf","ejbsfb","ejmepf","ejmept","ephhjo","epolfz","epvdif","evnbtt","fbu!nf","fofnbt","fojnbt","fqfojt","fspujd","g1yy1s","gbdlfs","gbhcbh","gbhhju","gbhhpu","gbhibh","gbubtt","gdlfst","gdljoh","gdvlfs","gfdlfs","gfmudi","gfujti","gjohfs","gpplfs","gpslfe","gvdlbt","gvdlfe","gvdlfs","gvdljo","gvllfs","gvlljo","gvlxju","gvrjoh","gvyy1s","hbzebs","hbzxbe","hpbutf","hpeebn","hvnnfs","ibsepo","ifoubj","ifspjo","ifsqft","ipfcbh","ipolff","ipolfz","ipoljf","ipplfs","ipsofz","ipsojf","ivnnfs","jodftu","kfxcbh","kfxcpz","lppmjf","lppudi","m4judi","mftcpt","mf  jf","mmfmmp","mmfzfe","nbtufs","nvuifs","nz!btt","o2hhfs","obncmb","ob jft","ojhh4s","ojhh5i","ojhhbi","ojhhbt","ojhhb ","ojhhfs","ojhmfu","ojqqmf","opplfz","oppljf","optiju","ovejuz","oznqip","pshbtn","pshjft","qfdlfs","qijmft","qijmjb","qivdlt","qivlfs","qivrfs","qjnqjt","qjttfe","qjttfs","qjttft","qpdlfu","qsjdlt","qvoboj","rvbudi","rvffgf","rvffst","sbdjbm","sbdjtn","sbdjtu","sbqjoh","sbqjtu","sffgfs","sfubse","sjnkbx","sjnkpc","sppgjf","tbejtn","tbejtu","tbqqip","tdiuvq","tdsfxt","tdspbu","tdspuf","tfyvbm","tijufe","tijufz","tijuut","tijuuz","tlsfxt","tmbwft","tmvuuz","tnfhnb","tobudi","tpeepn","tpepnz","tqbolt","tqjdlt","tqpphf","tujggz","uftuft","uispbu","ujeejf","ujuujf","usbnqt","usbooz","uxbuuz","wbhjob","wjbhsb","wjshjo","wpzfvs","xbggmf","xbolfs","xipsfe","xipsft","xjhhfs","xphhfe","bipmf","bsstf","bttft","c11ct","c28di","c2udi","cfudi","cjudi","cmpdl","cpggt","cpjol","cpofs","cppct","cppuz","dibol","dijod","dijol","dipbe","dipef","dmjut","dpdlt","dppot","dsbqt","dsfbn","dvout","ebodf","ebslz","efhhp","ejdlt","ejlft","ejmep","ejstb","eppti","epslt","evdif","ezlft","fofnb","fojnb","fqffo","fsfdu","g1y1s","gbsut","gdlfs","gfmdi","gmpht","gvcbs","gvdlb","gvdlt","gvhmz","gvlfo","gvlfs","gvrfe","gvy1s","hbokb","hppdi","hpplt","htqpu","hvqqz","ibscm","ifsqt","ipbsf","ipnpt","ipolz","ipsoz","ivnqt","iznfo","jubse","kjhhb","livou","ljlft","ljolz","lppdi","mbcjb","mftcp","mfzfe","njohf","npuib","nvodi","nvuib","nv  b","o2hhb","oblfe","obset","ob jt","ofhsp","ojhhb","oveft","oznqi","qbouz","qfo26","qfojj","qfojt","qfswf","qijmf","qivdl","qivlt","qivrt","qppok","qpslt","qpsop","qsjdl","qvcft","qvcjd","qvoub","qvttf","qvttj","qvttz","rgngu","rvbgf","rvffg","rvffs","rvffw","rvfgf","rvfjg","rvjfg","rvjgg","rxffg","sbqfe","sbqfs","sfopc","subse","svnqt","tbubo","tdsfx","tdsph","tfdlt","tfllt","tfnfo","tfyfe","tibsu","tijuf","tijut","tijuu","tizuf","tlbol","tlffu","tlsfx","tmbwf","tmvut","tpepn","tqbol","tqfsn","tqjdl","tqjdt","tqjlt","tuvet","uffut","ujeez","ujuut","ujuuz","usbnq","uxbut","uxvou","vsjof","wbhpp","wvmwb","x11tf","xbolz","xijqt","xipsf","xphhz","zjggz"," psdi","2dvq","5s6f","6i2u","bjet","bobm","bovt","bs6f","bstf","cboh","cmpx","cpgg","cpoh","cppc","cvoh","cvti","cvuu","d1dl","dbxl","djqb","dm2u","dmju","dpdl","dppo","dpso","ds5q","dsbq","dvnt","dvou","e2dl","ebhp","ebno","effq","ejbg","ejdl","ejlf","emdl","eppl","epsl","evnc","ezlf","gbdl","gbht","gbsu","gdlt","gdvl","gfdl","gmph","gppl","gvdl","gvrt","hbzt","hifz","hppl","hspf","hugp","hvcc","hzgt","iboe","ifmm","ijdl","ipfs","ipft","ipmf","ipnp","ipsf","ivnq","kbdl","kbqt","kjhb","kjtn","kj n","kj  ","kztn","lbxl","ljlf","lmju","lopc","lvou","lzlf","mfmp","n1g1","n1gp","nbdl","njmg","npg1","npgp","nvgg","nvoh","ob j","ojqt","ovef","ovut","psbm","pshj","pshz","qibu","qivl","qivr","qjtt","qplf","qppo","qppq","qppu","qpso","qvcf","qvee","qvet","qvub","qvup","rffg","rvbq","rvjg","rvjn","sbqf","sugn","svnq","tflt","tfyz","ti2u","tibh","tiju","tmvu","tnvu","tqjd","tqjl","tugv","tuve","tvdl","ubse","uff ","ujut","ujuu","uplf","uvse","ux5u","uxbu","vgjb","wbhz","xboh","xbol","xijq","xij ","xipf","xpht","xppg","zbol","zbzp","zfbu","zffu","zfzp","zjgg","zpmb","zpmt","zpoj","777","btt","cbh","cgf","cvu","dpl","dvn","ejl","eph","fbe","gbh","gdl","gvl","gvr","gvy","hbz","ijw","ipf","ipu","kbq","kjt","kj ","kpc","lll","mbq","mf ","mte","ojh","qjf","qve","tfy","tlp","uju","wbh","xph","xpq","yyy","7:","ip","yy"];
+        
+        function caesar(string, key) {
+            var newString = '';
+
+            for(var i = 0; i < string.length; i++)
+                newString += String.fromCharCode((string.charCodeAt(i) + key - 32) % 91 + 32);
+            
+            return newString;
+        };
+        
+        var badWords = Array(encodedWords.length);
+        for(var i = 0; i < encodedWords.length; i++)
+            badWords[i] = caesar(encodedWords[i], -key);
+
+        $(document).ready(function () {
+            $('#submit').click(function () {
+                process();
+            });
+
+            $('#name').keypress(function (e) {
+                if (e.which == 13) { // When "Enter" is pressed
+                    process();
+                }
+            });
+        });
+        
+        function check(name) {
+            var matches = [];
+
+            for(var i = 0; i < badWords.length; i++) {        
+                var newName = name.replace(new RegExp(badWords[i], 'gi'), new Array(badWords[i].length + 1).join('*'));
+                if(newName != name) {
+                    matches.push(badWords[i]);
+                }
+
+                name = newName;
+            }
+            
+            matches.push(name);
+            
+            return matches;
+        };
+
+        function process() {
+            var result = check($('#name').val())
+        
+            var name = result.pop();
+            var matches = result;
+            
+            $('#censored-name').val(name);
+
+            var matchHtml;
+            var censoredWordsElement = $('#censored-words');
+            if(matches.length > 0) {
+                censoredWordsElement.addClass('dirty');
+                matchHtml = "Your name contains the following censored words: <ul>";
+                for (i = 0; i < matches.length; i++)
+                    matchHtml += "<li>" + matches[i] + "</li>";
+            } else {
+                censoredWordsElement.removeClass('dirty');
+                matchHtml = "Your name contains no censored words."
+            }
+            censoredWordsElement.html(matchHtml);
+
+            $('#result').show();
+        }
+    </script>
+    <style>
+        @media only screen and (max-width: 640px) {
+            body { 
+                font-size: 14px; 
+            }
+            
+            input { 
+                 display: block; 
+                 padding: 3px; 
+                 width: 90%; 
+                 font-size: 18px; 
+                 margin: 0.5em auto;
+            }
+        }
+        
+        @media only screen and (min-height: 601px) {
+            body { margin: 5em 1em };
+        }
+        
+        @media only screen and (max-height: 600px) {
+            body { margin: 1em 1em };
+        }
+        
+
+        body {
+            text-align: center;
+            font-family: sans-serif;
+            background-color: black;
+            color: white;
+        }
+        
+        h1 {
+            color: #ffc;
+            font-family: serif;
+               text-shadow: 2px 2px 1px #c90;
+        }
+        
+        #censored-words { color: green; }
+        #censored-words.dirty { color: #C44; }
+    </style>
+</head>
+<body>
+
+<h1>DARK SOULS II Name Checker</h1>
+
+<p>Type your desired name into the box below and click "Check" to see how it will appear in-game.</p>
+
+<p><small>Please note: This currently only checks against the English language filters.</small></p>
+
+<p>
+    <input type="text" id="name" placeholder="Enter your name"/>
+    <button id="submit">Check</button>
+    <input type="text" id="censored-name" readonly/>
+</p>
+
+<div id="result" style="display: none">
+    <p id="censored-words"></p>
+</div>
+
+</body>
+</html>
