@@ -54,6 +54,8 @@
         var asterisks = new Array(encodedWords[0].length + 1).join('*');
 
         $(document).ready(function () {
+            $('#name').focus();
+        
             $('#submit').click(function () {
                 process();
             });
